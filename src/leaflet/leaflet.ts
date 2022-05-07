@@ -1,7 +1,9 @@
+import type { Location } from '@/localization/location';
 import { useCurrentLocation } from '@/localization/location-api';
 import * as L from 'leaflet'
 import "leaflet/dist/leaflet.css";
-import { watch, watchEffect } from 'vue';
+import { watch } from 'vue';
+import { harryPotterMarker } from './marker';
 
 const PRATER_LOCATION: L.LatLngExpression = [48.2059151, 16.4078496]
 
@@ -18,12 +20,24 @@ export function useLeaflet(element: HTMLDivElement) {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(leafletMap);
 
-    watch(location, (value) => {
-        if (value != null) {
-            console.warn(location.value);
+    watch(location, recenterMap)
+    watch(location, setMarker)
+
+    function recenterMap(location: Location | null) {
+        if (location != null) {
             leafletMap.setView(
-                [value.lat, value.long]
+                [location.lat, location.long]
             )
         }
-    })
+    }
+
+    let marker: L.Marker | null = null;
+    function setMarker(location: Location | null) {
+        if (marker != null) {
+            leafletMap.removeLayer(marker);
+        }
+        if (location == null) return;
+        marker = L.marker([location.lat, location.long], { icon: harryPotterMarker })
+        marker.addTo(leafletMap);
+    }
 }
