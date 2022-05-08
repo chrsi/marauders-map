@@ -15,6 +15,8 @@ export function useLeaflet(element: HTMLDivElement): L.Map {
         attributionControl: false
     }
 
-    return L.map(element, mapOptions);
+    const leafletMap = L.map(element, mapOptions);
+    L.tileLayer('/img/tile.png', { maxZoom: ZOOM_LEVEL }).addTo(leafletMap);
+    return leafletMap;
 }
 

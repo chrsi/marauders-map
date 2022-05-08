@@ -1,11 +1,11 @@
 <script setup lang="ts">
   import { ref, watchEffect } from 'vue'
-  import { useLeaflet } from './leaflet/leaflet'
+  import { useWizardingWorld } from './game/wizarding-world'
 
   const map = ref<HTMLDivElement>(null)
   watchEffect(() => {
     if (map.value) {
-      useLeaflet(map.value);
+      useWizardingWorld(map.value);
     }
   })
 </script>
