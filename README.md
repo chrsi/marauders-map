@@ -1,52 +1,16 @@
-# marauders-map
+# Marauder's Map
 
-This template should help get you started developing with Vue 3 in Vite.
+# Instructions
+## Creating a scenery
+The area is displayed via an image layer on top of the tile layer. To properly position this image layer i extracted an image via Googles Static Api and calculated it's bounding box coordinates.
+These are the steps to create the image layer:
+1. Search for a fitting image via the Google Static API: 
+`https://maps.googleapis.com/maps/api/staticmap?center=<lat>,<lon>&zoom=<zoom>&scale=2&size=640x640&maptype=satellite&format=png&visual_refresh=true&key=<api-key>`.
 
-## Recommended IDE Setup
+    Replace the `<lat>`, `<lon>` parameter with whatever coordinate is the center of your scene.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+    Replace the `<zoom>` parameter so your entire scene is visible on the image.
+    
+    Use your own api key in `<api-key>` 😉
+1. Call `npm run calc-bounds <lat> <lon> <zoom>` with the previously selected parameters.
+1. Use the result in the `wizarding-prater-layer.ts` file as a bounding box.
