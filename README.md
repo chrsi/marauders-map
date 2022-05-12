@@ -1,3 +1,5 @@
+[![pages-build-deployment](https://img.shields.io/badge/GitHub%20Pages-Online-brightgreen?logo=github)](https://chrsi.github.io/marauders-map/)
+
 # Marauder's Map
 
 # Instructions
