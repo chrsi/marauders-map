@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useVocalTrigger } from './vocal-trigger';
 
-const closed = ref(true);
-window.triggerMe = function() {
-  closed.value = !closed.value;
-}
+const OPEN_TRIGGER = "ich schwöre feierlich ich bin ein tunichtgut";
+const CLOSE_TRIGGER = "missetat begangen"
+
+const closed = useVocalTrigger(true, OPEN_TRIGGER, CLOSE_TRIGGER);
 </script>
 
 <template>
-<div class="wall left" :class="{ closed: closed }" />
-<div class="wall right" :class="{ closed: closed }" />
+<div class="wall left" :class="{ closed: !closed }" />
+<div class="wall right" :class="{ closed: !closed }" />
 </template>
 
 <style>
