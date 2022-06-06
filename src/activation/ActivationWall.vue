@@ -36,7 +36,7 @@ const closed = useVocalTrigger(true, OPEN_TRIGGERS, CLOSE_TRIGGERS);
 .left.closed {
   transition: transform 1s linear;
   transform-origin: left;
-  transform: rotateY(90deg);
+  transform: rotateY(-90deg);
 }
 .right.closed {
   transition: transform 1s linear;
