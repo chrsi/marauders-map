@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { ref, watchEffect } from 'vue'
   import { useWizardingWorld } from './game/wizarding-world'
+  import ActivationWall from './activation/ActivationWall.vue'
 
   const map = ref<HTMLDivElement>(null)
   watchEffect(() => {
@@ -11,6 +12,7 @@
 </script>
 
 <template>
+  <ActivationWall></ActivationWall>
   <div id="map" ref="map" class="map"></div>
 </template>
 
