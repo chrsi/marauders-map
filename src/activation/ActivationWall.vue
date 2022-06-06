@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { useVocalTrigger } from './vocal-trigger';
 
-const OPEN_TRIGGER = "ich schwöre feierlich ich bin ein tunichtgut";
-const CLOSE_TRIGGER = "missetat begangen"
+const OPEN_TRIGGERS = [
+  "ich schwöre feierlich ich bin ein tunichtgut",
+  "ich schwöre feierlich ich bin ein tue nicht gut"
+  ];
+const CLOSE_TRIGGERS = [ "missetat begangen", "missed hart begangen" ]
 
-const closed = useVocalTrigger(true, OPEN_TRIGGER, CLOSE_TRIGGER);
+const closed = useVocalTrigger(true, OPEN_TRIGGERS, CLOSE_TRIGGERS);
 </script>
 
 <template>
@@ -15,7 +18,7 @@ const closed = useVocalTrigger(true, OPEN_TRIGGER, CLOSE_TRIGGER);
 <style>
 .wall {
   /* has to overlay the google map */
-  z-index: 500;
+  z-index: 900;
 }
 
 .left {

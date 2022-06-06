@@ -1,8 +1,9 @@
 import Artyom from 'artyom.js';
 import { onMounted, onUnmounted, ref } from 'vue';
 
-export function useVocalTrigger(initiallyClosed: boolean, openCommand: String, closedCommand: String) {
-  const isClosed = ref(initiallyClosed)
+export function useVocalTrigger(initiallyClosed: boolean, openCommands: String[], closedCommands: String[]) {
+  const isClosed = ref(initiallyClosed);
+  
   let artyom: Artyom;
 
   onMounted(() => {
@@ -10,12 +11,12 @@ export function useVocalTrigger(initiallyClosed: boolean, openCommand: String, c
 
     var commands = [
       {
-        indexes:[openCommand],
+        indexes: openCommands,
         action:function() {
           isClosed.value = false;
         }
       }, {
-        indexes:[closedCommand],
+        indexes: closedCommands,
         action:function() {
           isClosed.value = true;
         }
@@ -33,6 +34,7 @@ export function useVocalTrigger(initiallyClosed: boolean, openCommand: String, c
               continuous:true,
               listen:true, 
               speed:1,
+              debug: true
           }).then(function(){
               console.log("Vocal Trigger setup");
           });
