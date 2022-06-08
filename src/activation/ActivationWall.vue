@@ -8,6 +8,9 @@ const OPEN_TRIGGERS = [
 const CLOSE_TRIGGERS = [ "missetat begangen", "missed hart begangen" ]
 
 const closed = useVocalTrigger(true, OPEN_TRIGGERS, CLOSE_TRIGGERS);
+window.debug_trigger = function() {
+  closed.value = !closed.value;
+}
 </script>
 
 <template>
